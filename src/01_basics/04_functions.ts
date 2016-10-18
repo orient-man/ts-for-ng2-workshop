@@ -117,8 +117,18 @@ function testGroupBy() {
   console.log("groupBy 2:", groupBy(names, byFirstLetter));
 }
 
-function eachSlice(list, iteratorFn, sliceSize) {
-
+function eachSlice(list: any[], iteratorFn: Function, sliceSize: number) {
+    list
+        .reduce((slices: any[][], elem: any) => {
+            let slice: any[] = slices[slices.length - 1];
+            if (slice.length < sliceSize) {
+                slice.push(elem);
+            } else {
+                slices.push([elem]);
+            }
+            return slices;
+        }, [[]])
+        .map(iteratorFn);
 }
 
 function eachSliceTest() {

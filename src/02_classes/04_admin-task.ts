@@ -1,5 +1,9 @@
 //TODO 1: AdminParams interface
 
+interface AdminParams {
+    login: string;
+    password: string;
+}
 
 /*
  * TODO 2: new Admin(params) class:
@@ -20,6 +24,42 @@
  * Private static methods:
  * - generateUuid() (generates next uniq UUID)
  * */
+
+class Admin {
+    private static NEXT_UUID = "xxxx-xxxx";
+    private static ENCODING_STR = "xxxx-xxxx";
+    private login: string;
+    private pass: string;
+    private encodedPass: string;
+    public uuid: string = Admin.NEXT_UUID;
+
+    constructor(params: AdminParams) {
+        this.login = params.login;
+        this.pass = params.password;
+        this.encodedPass = Admin.encodePassword(this.pass);
+    }
+
+    getLogin(): string {
+        return this.login;
+    }
+
+    setLogin(value: string) {
+        this.login = value;
+    }
+
+    getEncodedPassword(): string {
+        return this.encodedPass;
+    }
+
+    private static encodePassword(pass: string): string {
+        return Admin.ENCODING_STR;
+    }
+
+    private generateUuid(): string {
+        return "xxxx-xxxx";
+    }
+}
+
 function adminTest() {
   var login:string = "Bob";
   var passwd:string = "#secret!";
